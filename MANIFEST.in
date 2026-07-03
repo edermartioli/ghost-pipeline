@@ -1,0 +1,7 @@
+include LICENSE
+include README.md
+include reduce.sh
+recursive-include ghostpipe/masks *.mas
+# Test data and reduction shell workflow are kept in the repository but
+# excluded from source distributions to keep them lightweight.
+prune data

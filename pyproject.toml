@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghost-pipeline"
+version = "1.0.0"
+description = "A tool-kit to reduce Gemini/GHOST spectra and perform a CCF analysis to obtain precise radial velocities"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Eder Martioli", email = "emartioli@lna.br"},
+]
+keywords = [
+    "astronomy",
+    "spectroscopy",
+    "radial-velocity",
+    "GHOST",
+    "Gemini",
+    "exoplanets",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Astronomy",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy",
+    "matplotlib",
+    "astropy",
+    "scikit-learn",
+    "uncertainties",
+    "jplephem",
+]
+
+[project.optional-dependencies]
+# Required only by ghost_dual_timeseries (transit model overlay)
+transit = ["batman-package"]
+
+[project.urls]
+Homepage = "https://github.com/edermartioli/ghost-pipeline"
+Repository = "https://github.com/edermartioli/ghost-pipeline"
+Issues = "https://github.com/edermartioli/ghost-pipeline/issues"
+
+[project.scripts]
+ghost_pipeline = "ghostpipe.scripts.ghost_pipeline:main"
+ghost_log = "ghostpipe.scripts.ghost_log:main"
+ghost_build_s1d = "ghostpipe.scripts.ghost_build_s1d:main"
+ghost_template_s1d = "ghostpipe.scripts.ghost_template_s1d:main"
+ghost_ccf_pipeline = "ghostpipe.scripts.ghost_ccf_pipeline:main"
+ghost_get_simple_template = "ghostpipe.scripts.ghost_get_simple_template:main"
+ghost_dual_timeseries = "ghostpipe.scripts.ghost_dual_timeseries:main"
+ghost_diff_rv_timeseries = "ghostpipe.scripts.ghost_diff_rv_timeseries:main"
+ghost_rm_tomography = "ghostpipe.scripts.ghost_rm_tomography:main"
+ghost_plot_dragons = "ghostpipe.scripts.ghost_plot_dragons:main"
+sun_ccf_pipeline = "ghostpipe.scripts.sun_ccf_pipeline:main"
+
+[tool.setuptools]
+packages = ["ghostpipe", "ghostpipe.scripts"]
+
+[tool.setuptools.package-data]
+ghostpipe = ["masks/*.mas"]
